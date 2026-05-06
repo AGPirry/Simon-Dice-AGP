@@ -1,10 +1,21 @@
-const MAX_COLORES_SEQ = 10;
+const MAX_COLORES_SEQ = 15;
+const MAX_COLORES_FACIL = 4;
+const MAX_COLORES_DIFICIL = 7;
+const MAX_AYUDAS = 3;
+
+const tModo = {
+  Facil: 1,
+  Dificil: 2,
+};
 
 const tColores = {
   Rojo:   0,
   Verde:  1,
   Azul:   2, 
   Dorado: 3,
+  Blanco:  4,
+  Marron:  5,
+  Naranja: 6,
 };
 
 // Aqui se recibe un valor del array tColores y devuelve su nombre como un String
@@ -17,6 +28,12 @@ function mostrarColor(color) {
     return "Azul";
   if (color == tColores.Dorado) 
     return "Dorado";
+  if (color == tColores.Blanco)  
+    return "Blanco";
+  if (color == tColores.Marron)  
+    return "Marrón";
+  if (color == tColores.Naranja) 
+    return "Naranja";
 }
 
 // En esta funcion recibe un carácter que en este caso son las iniciales de los colores (r/v/a/d) y devuelve el valor de tColores, o null si no es ninguno
@@ -30,6 +47,12 @@ function charToColor(color) {
     return tColores.Azul;
   if (c == "d") 
     return tColores.Dorado;
+  if (c == "b") 
+    return tColores.Blanco;
+  if (c == "m") 
+    return tColores.Marron;
+  if (c == "n") 
+    return tColores.Naranja;
     
     return null;
 }
