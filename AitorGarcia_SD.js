@@ -67,17 +67,25 @@ function intToColor(numero) {
     return tColores.Azul;
   if (numero == 3) 
     return tColores.Dorado;
+  if (numero == 4) 
+    return tColores.Blanco;
+  if (numero == 5) 
+    return tColores.Marron;
+  if (numero == 6) 
+    return tColores.Naranja;
 }
 
 // Genera y devuelve un array de MAX_COLORES_SEQ colores aleatorios lo que pasa que no los muestra aunque esta creada y por eso hay que ir descubriendolos
-function generarSecuencia() {
+function generarSecuencia(modo) {
+  const numColores = (modo == tModo.Dificil) ? MAX_COLORES_DIFICIL : MAX_COLORES_FACIL;
   const secuencia = [];
   for (let i = 0; i < MAX_COLORES_SEQ; i++) {
-    const aleatorio = Math.floor(Math.random() * 4); // número entre 0 y 3
+    const aleatorio = Math.floor(Math.random() * numColores);
     secuencia[i] = intToColor(aleatorio);
   }
   return secuencia;
 }
+
 
 // Comprueba si el color introducido en la posición "indice" es correcto, que en este caso "indice" es la posición del color que buscamos
 function comprobarColor(secuenciaColores, indice, color) {
