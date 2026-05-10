@@ -197,6 +197,15 @@ function pregunta(rl, texto) {
   });
 }
 
+async function mostrarMenu(rl) {
+  console.log("\nElija una opción para continuar:");
+  console.log("0: Salir.");
+  console.log("1: Jugar en modo sencillo.");
+  console.log("2: Jugar en modo difícil.");
+  const opcion = await pregunta(rl, "Opción: ");
+  return parseInt(opcion.trim());
+}
+
 async function main() {
   process.stdin.resume();
   const rl = readline.createInterface({
@@ -206,12 +215,27 @@ async function main() {
 
   console.log("¡Bienvenido a Simon dice!");
   const nombre = await pregunta(rl, "¿Cuál es tu nombre? ");
-  console.log("Hola " + nombre + ", pulsa una tecla para empezar a jugar.");
+  console.log("Hola " + nombre + "!");
 
-  await pregunta(rl, "");
-  await comenzarJuego(nombre, rl);
+  let salir = false;
+
+  while (!salir) {
+    const opcion = await mostrarMenu(rl);
+
+    if (opcion == 0) {
+      console.log("¡Hasta luego, " + nombre + "!");
+      salir = true;
+    } else if (opcion == 1) {
+      await comenzarJuego(nombre, tModo.Facil, rl);
+    } else if (opcion == 2) {
+      await comenzarJuego(nombre, tModo.Dificil, rl);
+    } else {
+      console.log("Opción no válida.");
+    }
+  }
 
   rl.close();
 }
 
 main().catch(console.error);
+
